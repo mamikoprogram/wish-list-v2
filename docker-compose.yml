@@ -61,7 +61,7 @@ services:
       - "3306:3306"
     volumes:
       - ./docker/db/log:/var/log/mysql
-      - ./docker/db/dump:/usr/local/dump
+      - ./src/sql:/usr/local/dump
       - mysql_volume:/var/lib/mysql
     command: mysqld --slow_query_log=0
 

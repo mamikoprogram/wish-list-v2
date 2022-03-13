@@ -12,9 +12,9 @@ START TRANSACTION;
 SET time_zone = "+00:00";
 
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT = @@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS = @@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION = @@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
 
 --
@@ -26,27 +26,29 @@ SET time_zone = "+00:00";
 --
 -- テーブルの構造 `wishs`
 --
-
-CREATE TABLE `wishs` (
-  `id` int(11) NOT NULL,
-  `my_wish` varchar(20) DEFAULT NULL,
-  `memo` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+DROP TABLE IF EXISTS wishs;
+CREATE TABLE `wishs`
+(
+    `id`      INT(11) NOT NULL,
+    `my_wish` VARCHAR(20)  DEFAULT NULL,
+    `memo`    VARCHAR(100) DEFAULT NULL
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4;
 
 --
 -- テーブルのデータのダンプ `wishs`
 --
 
-INSERT INTO `wishs` (`id`, `my_wish`, `memo`) VALUES
-(9, 'テスト２', 'テスト２'),
-(10, '遊びたーーい', '遊びたい〜〜〜〜'),
-(11, '旅行いきたーーい', '鳥取砂丘もいいな〜〜〜'),
-(12, '旅行に行く', '沖縄〜'),
-(13, '食事に行く', '唐揚げ'),
-(14, 'あれ〜', 'なんで表示できないの〜？'),
-(15, '今度こそ', '頼む！'),
-(16, 'もしかして', '凡ミス？'),
-(17, NULL, 'my Wishに原因があるはず！');
+INSERT INTO `wishs` (`id`, `my_wish`, `memo`)
+VALUES (9, 'テスト２', 'テスト２'),
+       (10, '遊びたーーい', '遊びたい〜〜〜〜'),
+       (11, '旅行いきたーーい', '鳥取砂丘もいいな〜〜〜'),
+       (12, '旅行に行く', '沖縄〜'),
+       (13, '食事に行く', '唐揚げ'),
+       (14, 'あれ〜', 'なんで表示できないの〜？'),
+       (15, '今度こそ', '頼む！'),
+       (16, 'もしかして', '凡ミス？'),
+       (17, NULL, 'my Wishに原因があるはず！');
 
 --
 -- ダンプしたテーブルのインデックス
@@ -56,7 +58,7 @@ INSERT INTO `wishs` (`id`, `my_wish`, `memo`) VALUES
 -- テーブルのインデックス `wishs`
 --
 ALTER TABLE `wishs`
-  ADD PRIMARY KEY (`id`);
+    ADD PRIMARY KEY (`id`);
 
 --
 -- ダンプしたテーブルの AUTO_INCREMENT
@@ -66,9 +68,10 @@ ALTER TABLE `wishs`
 -- テーブルの AUTO_INCREMENT `wishs`
 --
 ALTER TABLE `wishs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+    MODIFY `id` INT(11) NOT NULL AUTO_INCREMENT,
+    AUTO_INCREMENT = 18;
 COMMIT;
 
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40101 SET CHARACTER_SET_CLIENT = @OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS = @OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION = @OLD_COLLATION_CONNECTION */;
