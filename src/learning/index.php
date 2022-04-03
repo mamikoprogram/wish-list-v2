@@ -18,7 +18,7 @@ $sql = 'select * from wishes';
 $stmt = $dbh->query($sql);
 $wishes = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-//completeカラムが0（未完了）のレコードだけを取す処理l
+//completeカラムが0（未完了）のレコードだけを取す処理
 $sql = 'select * from wishes WHERE complete = 0';
 $stmt = $dbh->query($sql);
 $wishes = $stmt->fetchAll(PDO::FETCH_ASSOC);
