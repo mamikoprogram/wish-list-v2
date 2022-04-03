@@ -12,25 +12,12 @@ try {
     exit;
 }
 
-
-if ($_SERVER['REQUEST_METHOD'] != 'POST') {
-    try {
-        //GETのidを取得
-        $id = $_GET['id'];
-
-//    編集画面に内容を表示する
-        $sql = "SELECT * FROM learning_php.wishes WHERE id = :id";
-        $stmt = $dbh->prepare($sql);
-        $stmt->bindParam('id', $id);
-        $stmt->fetchAll(PDO::FETCH_ASSOC);
-        $stmt->execute();
-    } catch (PDOException $e) {
-        echo $e->getMessage();
-        exit();
-    }
-}
-
-if ($_SERVER['REQUEST_METHOD'] != 'GET') {
+/*
+ * API開発ではない通常のWebサービスでは、POSTとGETのみ意識します。
+ * （フレームワーク利用時を除く）
+ * そのため、この例では下記のようにPOST時とそれ以外で処理を分けてよいです。
+ */
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!empty($_POST['myWish'])) {
         $id = $_POST['id'];
         $myWish = $_POST['myWish'];
@@ -50,6 +37,31 @@ if ($_SERVER['REQUEST_METHOD'] != 'GET') {
     }
 }
 
+try {
+    //GETのidを取得
+    $id = $_GET['id'];
+
+//    編集画面に内容を表示する
+    $sql = "SELECT * FROM learning_php.wishes WHERE id = :id";
+    $stmt = $dbh->prepare($sql);
+    $stmt->bindParam('id', $id);
+    $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $stmt->execute();
+
+    // ここで行を取り出してしまう
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    // 存在しないIDの指定などでは行が取り出せないので、行が取り出せないときは終了
+    if (empty($row)) {
+        echo 'Wishが存在しません';
+        exit;
+    }
+
+} catch (PDOException $e) {
+    echo $e->getMessage();
+    exit();
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -64,23 +76,19 @@ if ($_SERVER['REQUEST_METHOD'] != 'GET') {
 <body>
 <h1>Edit Wish</h1>
 <form method="POST" action="edit.php">
-    <?php
-    if ($row = $stmt->fetch(PDO::FETCH_ASSOC)): ?>
-        <span class="item">My Wish:</span><br>
-        <label>
-            <!--フォームの中に編集前のWishとメモを表示させる-->
-            <input type="text" class="txt" name="myWish" value="<?php
-            echo $row['my_wish']; ?>">
-        </label>
-        <span class="item">Memo:</span><br>
-        <label><textarea name="memo" cols="20" rows="10"><?php
-                echo $row['memo']; ?></textarea></label><br>
-        <!--      DB更新する為にidを渡す-->
-        <input type="hidden" name="id" value="<?php
-        echo $row['id']; ?>">
-        <input type="submit" class="btn-style" value="変更">
-    <?php
-    endif; ?>
+    <span class="item">My Wish:</span><br>
+    <label>
+        <!--フォームの中に編集前のWishとメモを表示させる-->
+        <input type="text" class="txt" name="myWish" value="<?php
+        echo $row['my_wish']; ?>">
+    </label>
+    <span class="item">Memo:</span><br>
+    <label><textarea name="memo" cols="20" rows="10"><?php
+            echo $row['memo']; ?></textarea></label><br>
+    <!--      DB更新する為にidを渡す-->
+    <input type="hidden" name="id" value="<?php
+    echo $row['id']; ?>">
+    <input type="submit" class="btn-style" value="変更">
 </form>
 </body>
 </html>
