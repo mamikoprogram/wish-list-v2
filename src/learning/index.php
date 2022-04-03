@@ -1,7 +1,7 @@
 <?php
 
 require_once "../include/const.php";
-//require_once "detail.php";
+
 // データベース接続
 try {
     $dbh = new PDO(DB_DSN, DB_USER, DB_PASSWORD);
@@ -19,7 +19,7 @@ $stmt = $dbh->query($sql);
 $wishes = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 //completeカラムが0（未完了）のレコードだけを取す処理
-$sql = 'select * from wishes WHERE complete = 0';
+$sql = 'select * from wishes WHERE completion = 0';
 $stmt = $dbh->query($sql);
 $wishes = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -60,7 +60,7 @@ $wishes = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <td><a href="edit.php?id=<?php
                 echo $wish['id']; ?>">編集</a></td>
             <td>
-                <a href="complete.php?id=<?php
+                <a href="completion.php?id=<?php
                 echo $wish['id']; ?>" type="submit">完了</a>
             </td>
         </tr>

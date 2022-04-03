@@ -12,9 +12,8 @@ try {
     exit;
 }
 
-if ($_SERVER['REQUEST_METHOD'] != 'POST') {
-    echo "アクセスが正しくありません。";
-} else {
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     //  POSTのidを取得
     $id = $_POST['id'];
 
@@ -23,4 +22,6 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST') {
     $stmt->bindParam('id', $id);
     $stmt->execute();
     header("Location: index.php");
+} else {
+    echo "アクセスが正しくありません。";
 }

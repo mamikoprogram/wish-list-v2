@@ -12,7 +12,6 @@ try {
     exit;
 }
 
-
 if ($_SERVER['REQUEST_METHOD'] != 'POST') {
     try {
         //GETのidを取得
@@ -79,8 +78,13 @@ if ($_SERVER['REQUEST_METHOD'] != 'GET') {
         <input type="hidden" name="id" value="<?php
         echo $row['id']; ?>">
         <input type="submit" class="btn-style" value="変更">
+        <input type="submit" class="btn-style" formaction="confirm-delete.php?id=<?php
+        echo $row['id']; ?>"
+               value="削除">
+
     <?php
     endif; ?>
 </form>
+
 </body>
 </html>
