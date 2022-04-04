@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- ホスト: db
--- 生成日時: 2022 年 3 月 13 日 12:36
+-- 生成日時: 2022 年 3 月 24 日 14:41
 -- サーバのバージョン： 5.7.36
 -- PHP のバージョン: 8.0.15
 
@@ -12,9 +12,9 @@ START TRANSACTION;
 SET time_zone = "+00:00";
 
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT = @@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS = @@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION = @@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
 
 --
@@ -27,19 +27,23 @@ SET time_zone = "+00:00";
 -- テーブルの構造 `wishes`
 --
 
-CREATE TABLE `wishes` (
-                          `id` int(11) NOT NULL,
-                          `my_wish` varchar(20) DEFAULT NULL,
-                          `memo` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+CREATE TABLE `wishes`
+(
+    `id`       int(11)    NOT NULL,
+    `my_wish`  varchar(100)        DEFAULT NULL,
+    `memo`     varchar(300)        DEFAULT NULL,
+    `complete` tinyint(1) NOT NULL DEFAULT '0'
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4;
 
 --
 -- テーブルのデータのダンプ `wishes`
 --
 
-INSERT INTO `wishes` (`id`, `my_wish`, `memo`) VALUES
-                                                   (20, '最終テスト', '最終テスト'),
-                                                   (22, 'テーブル名', '変更\r\n');
+INSERT INTO `wishes` (`id`, `my_wish`, `memo`, `complete`)
+VALUES (41, '旅行に行く', '沖縄に行く', 0),
+       (42, '編集画面作成', '編集後NULLになっているのが問題', 0),
+       (46, 'このWishを編集', '編集してみてください〜', 0);
 
 --
 -- ダンプしたテーブルのインデックス
@@ -59,9 +63,10 @@ ALTER TABLE `wishes`
 -- テーブルの AUTO_INCREMENT `wishes`
 --
 ALTER TABLE `wishes`
-    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,
+    AUTO_INCREMENT = 47;
 COMMIT;
 
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40101 SET CHARACTER_SET_CLIENT = @OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS = @OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION = @OLD_COLLATION_CONNECTION */;

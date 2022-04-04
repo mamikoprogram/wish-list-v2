@@ -20,7 +20,6 @@ try {
     echo 'データベースに接続できません。' . $e->getMessage();
     exit;
 }
-
 ?>
 
 <!doctype html>
@@ -31,12 +30,12 @@ try {
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="styles.css">
-    <title>Wish詳細</title>
+    <title>Detail Wish</title>
 </head>
 <body>
 <h1>Wish List</h1>
 <h2>My Wish</h2>
-<!--詳細画面表示(修正済)-->
+<!--詳細画面表示-->
 <?php
 if ($row = $stmt->fetch(PDO::FETCH_ASSOC)) { ?>
     <p class="detail"><?php
