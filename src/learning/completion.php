@@ -17,7 +17,7 @@ try {
             //  GETのidを取得
             $id = $_GET['id'];
 
-            $sql = 'UPDATE wishes SET complete = 1 WHERE id = :id';
+            $sql = 'UPDATE wishes SET completion = 1 WHERE id = :id';
             $stmt = $dbh->prepare($sql);
             $stmt->bindParam('id', $id);
             $stmt->execute();
@@ -32,8 +32,5 @@ try {
 //
 //メモ
 //completeカラムを作ってデフォルトで０
-//完了ボタンを押したらcompleteカラムが１に変更
-//もしカラムが０の時　index.phpの＄Wishを表示
-//カラムが１の時は非表示（if else）
-
-
+//完了ボタンを押したらcompleteカラムが１に更新
+//カラムが０の時だけ　index.phpの$Wishを表示
