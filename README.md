@@ -67,5 +67,4 @@ PHPの基礎には下記を含めています。
 - 詳細画面
 
 ## 画面遷移
-
-{{thumbnail(WithList画面遷移.jpg, size=300)}}
+![画面遷移](images/WithList-ScreenTransition.jpeg)
